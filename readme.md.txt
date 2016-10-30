@@ -1,0 +1,1 @@
+A simple repository for modified Neopets Userscripts
