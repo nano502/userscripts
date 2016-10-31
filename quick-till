@@ -1,0 +1,27 @@
+// ==UserScript==
+// @author         diceroll123, Caleb Coulter
+// @name           Neopets - Quick-Till
+// @description    Sets withdraw value to amount in till. Enhancements for easy withdrawal for Bargain Stocks money
+// @include        http://www.neopets.com/market.phtml?type=till
+// ==/UserScript==
+
+var np = document.body.innerHTML.match(/You currently have <b>([0-9,\,]*) NP<\/b> in your till./)[1];
+np = np.replace(/,/g, '');
+
+$('[src="http://images.neopets.com/shopkeepers/marketplace_newimage.gif"]').attr("src","http://pets.neopets.com/cp/sb2vv73m/1/2.png");
+
+if(np === 0) return;
+
+$('[name="amount"]').val(np);
+
+//lazy bargain stocks withdrawal
+var stocksbutton = document.createElement("button");
+var milbutton = document.createElement("button");
+
+var stockstext = document.createTextNode('Set 15k');
+stocksbutton.appendChild(stockstext);
+
+var info = document.querySelector(".content p");
+info.appendChild(stocksbutton);
+    
+stocksbutton.addEventListener ("click", function() {$('[name="amount"]').val(15000);});
